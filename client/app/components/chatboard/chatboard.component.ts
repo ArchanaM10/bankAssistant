@@ -12,7 +12,7 @@ import { TextToSpeechService } from '../../services/textToSpeech/textToSpeech.se
 
 export class ChatboardComponent implements OnInit {
 
-    chatBotMsgURL: string = 'http://localhost:8080/api/conversation/message';
+    chatBotMsgURL: string = 'http://bankassistant.mybluemix.net/api/conversation/message';
     chat: Chat = {
         chatText: '',
         chatArray: []

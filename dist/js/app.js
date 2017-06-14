@@ -67542,7 +67542,7 @@ var ChatboardComponent = (function () {
     function ChatboardComponent(postHTTPService, textToSpeechService) {
         this.postHTTPService = postHTTPService;
         this.textToSpeechService = textToSpeechService;
-        this.chatBotMsgURL = 'http://localhost:8080/api/conversation/message';
+        this.chatBotMsgURL = 'http://bankassistant.mybluemix.net/api/conversation/message';
         this.chat = {
             chatText: '',
             chatArray: []
