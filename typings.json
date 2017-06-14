@@ -1,0 +1,8 @@
+{
+  "name": "bank_assistant",
+  "dependencies": {},
+  "globalDependencies": {
+    "core-js": "registry:dt/core-js#0.0.0+20160725163759",
+    "node": "registry:env/node#6.0.0+20170213133316"
+  }
+}

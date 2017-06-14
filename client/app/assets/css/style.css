@@ -1,0 +1,9 @@
+@import url("../../../../node_modules/bootstrap/dist/css/bootstrap.css");
+
+html{
+    color: white;
+}
+
+.nopadding{
+    padding: 0;
+}

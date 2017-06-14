@@ -1,0 +1,25 @@
+<div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+    <bank-header></bank-header>
+    
+    <section class="col-md-12 col-sm-12 col-xs-12 chatBoxDisplayBoard">
+        <section *ngFor="let chatObj of chat.chatArray;let index=index">
+            <client-chat *ngIf="chatObj.source == 'client'" [clientChatObj]="chatObj"></client-chat>
+            <server-chat *ngIf="chatObj.source == 'server'" [serverChatObj]="chatObj"></server-chat>
+        </section>
+    </section>
+
+    <section class="col-m-12 chatboxTextContainer">
+        <span *ngIf="isTyping" class="col-md-12 typingText">typing...</span>
+        <form class="input-group input-group-lg" novalidate #chatForm="ngForm" autocomplete="off">
+            <!--<span class="input-group-addon chatboxBtn">$</span>-->
+            <input type="text" class="form-control" name="chatText" [(ngModel)]="chat.chatText" required autofocus />
+            <span class="input-group-btn">
+                <button class="btn btn-default chatboxBtn" type="button" (click)="sendChatMessage(chatForm.value)"
+                    [disabled]="chatForm.invalid">
+                    <span class="glyphicon glyphicon-circle-arrow-right enterIconBtn"></span>
+                </button>
+            </span>
+        </form>
+        <!--<input type="text" placeholder="Type your message here" />-->
+    </section>
+</div>

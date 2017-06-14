@@ -1,0 +1,17 @@
+<section class="loginContainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!--<div class="wrap">-->
+                <section class="col-md-6 col-md-offset-3">
+                    <p class="form-title">Sign In</p>
+                    <form class="login" novalidate #loginForm="ngForm" (ngSubmit)="doLogin(loginForm.value)" autocomplete="off">
+                        <input type="text" placeholder="Username" name="username" [(ngModel)]="login.username" required/>
+                        <input type="text" placeholder="Password" name="password" [(ngModel)]="login.password" required/>
+                        <input type="submit" value="Log In" class="btn btn-success btn-sm" [disabled]="loginForm.invalid" />
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
