@@ -13,12 +13,14 @@ import { ServerChatComponent } from './components/chatboard/partials/server/serv
 
 import { GETHTTPService } from './services/http/get.httpService';
 
+import { ENVConfig } from './config/env.config';
+
 @NgModule({
     imports: [BrowserModule, AppRoutingModule, FormsModule, HttpModule],
     exports: [],
     declarations: [AppComponent, LoginComponent, HeaderComponent, ChatboardComponent,
         ClientChatComponent, ServerChatComponent],
-    providers: [GETHTTPService],
+    providers: [GETHTTPService, ENVConfig],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

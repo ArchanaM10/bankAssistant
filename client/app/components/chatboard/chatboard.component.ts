@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Chat } from './chatboard.interface';
 import { POSTHTTPService } from '../../services/http/post.httpService';
 import { TextToSpeechService } from '../../services/textToSpeech/textToSpeech.service';
+import { ENVConfig } from '../../config/env.config';
 
 @Component({
     selector: 'chat-board',
@@ -11,8 +12,8 @@ import { TextToSpeechService } from '../../services/textToSpeech/textToSpeech.se
 })
 
 export class ChatboardComponent implements OnInit {
-
-    chatBotMsgURL: string = 'http://bankassistant.mybluemix.net/api/conversation/message';
+//http://localhost:8080/api/conversation/message
+    chatBotMsgURL: string;// = 'http://bankassistant.mybluemix.net/api/conversation/message';
     chat: Chat = {
         chatText: '',
         chatArray: []
@@ -21,11 +22,16 @@ export class ChatboardComponent implements OnInit {
 
     constructor(
         private postHTTPService: POSTHTTPService,
-        private textToSpeechService: TextToSpeechService
+        private textToSpeechService: TextToSpeechService,
+        private envConfig: ENVConfig
     ) { }
 
     ngOnInit() {
-        this.getResponseFromChatBot({ msg: '' });
+        console.log('envConfig : ', this.envConfig.getDomainName());
+        let domainName: string = this.envConfig.getDomainName();
+        this.chatBotMsgURL = domainName + '/api/conversation/message';
+        console.log('chatBotMsgURL : ', this.chatBotMsgURL);
+        this.getResponseFromChatBot({ msg: '' });        
     }
 
     sendChatMessage(msg: any): void {
