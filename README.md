@@ -19,6 +19,6 @@ To check this on bluemix use link "bankAssistant.mybluemix.n
 
 On successful execution of the application, you will land onto the login page:
 Enter any string for username and password
-For conversation to take place enter strings like, Hi, Hello, How to open saving bank account, Gooddbye.
+For conversation to take place enter strings like, Hi, Hello, How to open saving bank account, Goodbye.
 
 Enjoy...
