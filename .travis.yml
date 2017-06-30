@@ -11,3 +11,7 @@ deploy:
   space: $BLUEMIX_SPACE
   on:
     branch: master
+cache:
+  directories:
+    - "node_modules"	
+	

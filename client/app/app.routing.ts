@@ -27,8 +27,9 @@ import { LoginComponent } from './components/login/login.component';
 import { ChatboardComponent } from './components/chatboard/chatboard.component';
 
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'chatboard', component: ChatboardComponent }
+  /*{ path: '', component: LoginComponent },
+  { path: 'chatboard', component: ChatboardComponent }*/
+  { path: '', component: ChatboardComponent }
 ];
 
 @NgModule({

@@ -41,3 +41,16 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.backLinkSection{
+    margin-top: 10px;
+}
+
+.backLink{
+    color: white;
+    font-size: 20px;
+}
+
+.backLink:hover{
+    color: white;
+}
