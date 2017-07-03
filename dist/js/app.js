@@ -78877,11 +78877,12 @@ var HeaderComponent = (function () {
     function HeaderComponent(getHTTPService) {
         var _this = this;
         this.getHTTPService = getHTTPService;
+        this.currentLocation = '';
         this.loggedInUserDetails = {};
         this.logoURL = '../../assets/images/logo.png';
+        this.getLoggedInUserDetails();
         navigator.geolocation.getCurrentPosition(function (position) {
             _this.locationSuccess(position, _this);
-            _this.getLoggedInUserDetails();
         }, this.locationFail);
     }
     HeaderComponent.prototype.ngOnInit = function () { };
@@ -78904,7 +78905,7 @@ var HeaderComponent = (function () {
     };
     HeaderComponent.prototype.locationFail = function () {
         console.log('Oops, could not find you.');
-        this.currentLocation = 'No Location';
+        // this.currentLocation = 'No Location';
     };
     /*getCurrentLocation(lat: any, long: any): void {
         // let latlng = new google.maps.LatLng(lat, long);
@@ -82480,7 +82481,7 @@ module.exports = "<section class=\"col-md-12 col-sm-12 col-xs-12 chatBoxContaine
 /* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<header class=\"col-md-12 col-sm-12 col-xs-12 bankHeader\">\r\n    <section class=\"logoContainer col-md-1 col-sm-2 col-xs-3 nopadding\">\r\n        <img class=\"logoIcon\" src=\"" + __webpack_require__(417) + "\"/> <br>\r\n        <p class=\"logoText\">Bank</p>\r\n    </section>\r\n    <section class=\"col-md-9 col-sm-8 col-xs-7 textOverFlow\">\r\n        <article class=\"welcomeText\">Welcome \r\n            <span *ngIf=\"loggedInUserDetails\">{{loggedInUserDetails.users}}</span>\r\n        </article>\r\n        <span class=\"glyphicon glyphicon-map-marker pinIcon\"></span>\r\n        <span class=\"locationText\">{{currentLocation}}</span>\r\n    </section>\r\n    <section class=\"col-md-1 col-sm-1 col-xs-1 nopadding backLinkSection\">\r\n        <a href=\"https://dev34514.service-now.com/jf/?id=solution_center\" class=\"backLink\">Back</a>\r\n    </section>\r\n    <section class=\"col-md-1 col-sm-1 col-xs-1 nopadding dropdown\">        \r\n        <span class=\"glyphicon glyphicon-cog pull-right dropdown-toggle settingIcon\"\r\n            id=\"dropdownMenu1\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\"></span>\r\n        <ul class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownMenu1\">\r\n            <li><a href=\"#\">Action</a></li>\r\n            <li><a href=\"#\">Another action</a></li>\r\n            <li><a href=\"#\">Something else here</a></li>\r\n            <li role=\"separator\" class=\"divider\"></li>\r\n            <li><a routerLink='/'>Log out</a></li>\r\n        </ul>    \r\n    </section>\r\n</header>";
+module.exports = "<header class=\"col-md-12 col-sm-12 col-xs-12 bankHeader\">\r\n    <section class=\"logoContainer col-md-1 col-sm-2 col-xs-3 nopadding\">\r\n        <img class=\"logoIcon\" src=\"" + __webpack_require__(417) + "\"/> <br>\r\n        <p class=\"logoText\">Bank</p>\r\n    </section>\r\n    <section class=\"col-md-9 col-sm-8 col-xs-7 textOverFlow\">\r\n        <article class=\"welcomeText\">Welcome \r\n            <span *ngIf=\"loggedInUserDetails\">{{loggedInUserDetails.user}}</span>\r\n        </article>\r\n        <span class=\"glyphicon glyphicon-map-marker pinIcon\"></span>\r\n        <span class=\"locationText\">{{currentLocation}}</span>\r\n    </section>\r\n    <section class=\"col-md-1 col-sm-1 col-xs-1 nopadding backLinkSection\">\r\n        <a href=\"https://dev34514.service-now.com/jf/?id=solution_center\" class=\"backLink\">Back</a>\r\n    </section>\r\n    <section class=\"col-md-1 col-sm-1 col-xs-1 nopadding dropdown\">        \r\n        <span class=\"glyphicon glyphicon-cog pull-right dropdown-toggle settingIcon\"\r\n            id=\"dropdownMenu1\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\"></span>\r\n        <ul class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownMenu1\">\r\n            <li><a href=\"#\">Action</a></li>\r\n            <li><a href=\"#\">Another action</a></li>\r\n            <li><a href=\"#\">Something else here</a></li>\r\n            <li role=\"separator\" class=\"divider\"></li>\r\n            <li><a routerLink='/'>Log out</a></li>\r\n        </ul>    \r\n    </section>\r\n</header>";
 
 /***/ }),
 /* 426 */

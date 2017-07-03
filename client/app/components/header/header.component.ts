@@ -10,13 +10,13 @@ import { GETHTTPService } from '../../services/http/get.httpService';
 
 export class HeaderComponent implements OnInit {
 
-    currentLocation: any;
+    currentLocation: string = '';
     loggedInUserDetails: any = {};
 
     constructor(private getHTTPService: GETHTTPService) {
+        this.getLoggedInUserDetails();
         navigator.geolocation.getCurrentPosition((position: any) => {
-            this.locationSuccess(position, this)
-            this.getLoggedInUserDetails();
+            this.locationSuccess(position, this)            
         }, this.locationFail);
     }
 
@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
 
     locationFail(): void {
         console.log('Oops, could not find you.');
-        this.currentLocation = 'No Location';
+        // this.currentLocation = 'No Location';
     }
 
     /*getCurrentLocation(lat: any, long: any): void {
