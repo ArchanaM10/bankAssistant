@@ -4,7 +4,9 @@
         <p class="logoText">Bank</p>
     </section>
     <section class="col-md-9 col-sm-8 col-xs-7 textOverFlow">
-        <article class="welcomeText">Welcome user</article>
+        <article class="welcomeText">Welcome 
+            <span *ngIf="loggedInUserDetails">{{loggedInUserDetails.users}}</span>
+        </article>
         <span class="glyphicon glyphicon-map-marker pinIcon"></span>
         <span class="locationText">{{currentLocation}}</span>
     </section>

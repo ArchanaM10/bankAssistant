@@ -37517,6 +37517,21 @@ var GETHTTPService = (function () {
             return response.json();
         });
     };
+    GETHTTPService.prototype.getDataWithHeaders = function (url) {
+        var headers = new http_1.Headers({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic ' + btoa('admin' + ':' + 'EBrhgBrWsxtG')
+        });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.get(url, options)
+            .map(function (response) {
+            var reponse;
+            // console.log('response : ', response);
+            // console.log('response.json() : ', response.json());
+            return response.json();
+        });
+    };
     return GETHTTPService;
 }());
 GETHTTPService = __decorate([
@@ -78862,9 +78877,11 @@ var HeaderComponent = (function () {
     function HeaderComponent(getHTTPService) {
         var _this = this;
         this.getHTTPService = getHTTPService;
+        this.loggedInUserDetails = {};
         this.logoURL = '../../assets/images/logo.png';
         navigator.geolocation.getCurrentPosition(function (position) {
             _this.locationSuccess(position, _this);
+            _this.getLoggedInUserDetails();
         }, this.locationFail);
     }
     HeaderComponent.prototype.ngOnInit = function () { };
@@ -78888,6 +78905,26 @@ var HeaderComponent = (function () {
     HeaderComponent.prototype.locationFail = function () {
         console.log('Oops, could not find you.');
         this.currentLocation = 'No Location';
+    };
+    /*getCurrentLocation(lat: any, long: any): void {
+        // let latlng = new google.maps.LatLng(lat, long);
+        let geoCoding = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + '%2C' + long + '&language=en';
+
+        $.getJSON(geoCoding).done(function(location: any) {
+            console.log(location);
+        })
+
+    }*/
+    HeaderComponent.prototype.getLoggedInUserDetails = function () {
+        var _this = this;
+        console.log('loggedIn user details');
+        var url = "https://dev34514.service-now.com/api/now/table/v_user_session?sysparm_limit=1";
+        this.getHTTPService.getDataWithHeaders(url).subscribe(function (data) {
+            console.log('data in getLoggedInUserDetails: ', data);
+            _this.loggedInUserDetails = data.result[0];
+            // console.log('location : ', data.results[1].formatted_address);
+            // this.currentLocation = data.results[1].formatted_address;
+        });
     };
     return HeaderComponent;
 }());
@@ -82443,7 +82480,7 @@ module.exports = "<section class=\"col-md-12 col-sm-12 col-xs-12 chatBoxContaine
 /* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<header class=\"col-md-12 col-sm-12 col-xs-12 bankHeader\">\r\n    <section class=\"logoContainer col-md-1 col-sm-2 col-xs-3 nopadding\">\r\n        <img class=\"logoIcon\" src=\"" + __webpack_require__(417) + "\"/> <br>\r\n        <p class=\"logoText\">Bank</p>\r\n    </section>\r\n    <section class=\"col-md-9 col-sm-8 col-xs-7 textOverFlow\">\r\n        <article class=\"welcomeText\">Welcome user</article>\r\n        <span class=\"glyphicon glyphicon-map-marker pinIcon\"></span>\r\n        <span class=\"locationText\">{{currentLocation}}</span>\r\n    </section>\r\n    <section class=\"col-md-1 col-sm-1 col-xs-1 nopadding backLinkSection\">\r\n        <a href=\"https://dev34514.service-now.com/jf/?id=solution_center\" class=\"backLink\">Back</a>\r\n    </section>\r\n    <section class=\"col-md-1 col-sm-1 col-xs-1 nopadding dropdown\">        \r\n        <span class=\"glyphicon glyphicon-cog pull-right dropdown-toggle settingIcon\"\r\n            id=\"dropdownMenu1\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\"></span>\r\n        <ul class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownMenu1\">\r\n            <li><a href=\"#\">Action</a></li>\r\n            <li><a href=\"#\">Another action</a></li>\r\n            <li><a href=\"#\">Something else here</a></li>\r\n            <li role=\"separator\" class=\"divider\"></li>\r\n            <li><a routerLink='/'>Log out</a></li>\r\n        </ul>    \r\n    </section>\r\n</header>";
+module.exports = "<header class=\"col-md-12 col-sm-12 col-xs-12 bankHeader\">\r\n    <section class=\"logoContainer col-md-1 col-sm-2 col-xs-3 nopadding\">\r\n        <img class=\"logoIcon\" src=\"" + __webpack_require__(417) + "\"/> <br>\r\n        <p class=\"logoText\">Bank</p>\r\n    </section>\r\n    <section class=\"col-md-9 col-sm-8 col-xs-7 textOverFlow\">\r\n        <article class=\"welcomeText\">Welcome \r\n            <span *ngIf=\"loggedInUserDetails\">{{loggedInUserDetails.users}}</span>\r\n        </article>\r\n        <span class=\"glyphicon glyphicon-map-marker pinIcon\"></span>\r\n        <span class=\"locationText\">{{currentLocation}}</span>\r\n    </section>\r\n    <section class=\"col-md-1 col-sm-1 col-xs-1 nopadding backLinkSection\">\r\n        <a href=\"https://dev34514.service-now.com/jf/?id=solution_center\" class=\"backLink\">Back</a>\r\n    </section>\r\n    <section class=\"col-md-1 col-sm-1 col-xs-1 nopadding dropdown\">        \r\n        <span class=\"glyphicon glyphicon-cog pull-right dropdown-toggle settingIcon\"\r\n            id=\"dropdownMenu1\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"true\"></span>\r\n        <ul class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"dropdownMenu1\">\r\n            <li><a href=\"#\">Action</a></li>\r\n            <li><a href=\"#\">Another action</a></li>\r\n            <li><a href=\"#\">Something else here</a></li>\r\n            <li role=\"separator\" class=\"divider\"></li>\r\n            <li><a routerLink='/'>Log out</a></li>\r\n        </ul>    \r\n    </section>\r\n</header>";
 
 /***/ }),
 /* 426 */

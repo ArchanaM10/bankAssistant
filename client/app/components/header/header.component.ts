@@ -11,13 +11,16 @@ import { GETHTTPService } from '../../services/http/get.httpService';
 export class HeaderComponent implements OnInit {
 
     currentLocation: any;
+    loggedInUserDetails: any = {};
+
     constructor(private getHTTPService: GETHTTPService) {
         navigator.geolocation.getCurrentPosition((position: any) => {
             this.locationSuccess(position, this)
+            this.getLoggedInUserDetails();
         }, this.locationFail);
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
     logoURL: string = '../../assets/images/logo.png';
 
@@ -53,5 +56,17 @@ export class HeaderComponent implements OnInit {
         })
 
     }*/
+
+    getLoggedInUserDetails(): void {
+        console.log('loggedIn user details');
+        let url = "https://dev34514.service-now.com/api/now/table/v_user_session?sysparm_limit=1";
+        this.getHTTPService.getDataWithHeaders(url).subscribe(
+            (data: any) => {
+                console.log('data in getLoggedInUserDetails: ', data);
+                this.loggedInUserDetails = data.result[0];
+                // console.log('location : ', data.results[1].formatted_address);
+                // this.currentLocation = data.results[1].formatted_address;
+            });
+    }
 
 }
